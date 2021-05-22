@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    [SerializeField] Vector2 ShootDirection;
-    [SerializeField] float ShootPower;
+    [SerializeField] Vector2Variable ShootDirection;
     [SerializeField] float DecreaseVelocityPower;
     Rigidbody2D BallRigidBody;
     bool isVelocityDecreasing = false;
@@ -14,12 +13,21 @@ public class Shoot : MonoBehaviour
     {
         BallRigidBody = GetComponent<Rigidbody2D>();
     }
-    void Update()
+
+    void OnEnable()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-            BallRigidBody.AddForce(ShootDirection * ShootPower, ForceMode2D.Impulse);
+        InputCollector.OnAimingIsFinished += ShootBall;
     }
 
+    private void ShootBall()
+    {
+        BallRigidBody.AddForce(ShootDirection.value, ForceMode2D.Impulse);
+    }
+
+    void OnDisable()
+    {
+        InputCollector.OnAimingIsFinished -= ShootBall;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -29,7 +37,6 @@ public class Shoot : MonoBehaviour
                 StartCoroutine(DecreaseVelocity());
         }
     }
-
 
     IEnumerator DecreaseVelocity()
     {
