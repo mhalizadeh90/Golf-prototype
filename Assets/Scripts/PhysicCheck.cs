@@ -58,13 +58,13 @@ public class PhysicCheck : MonoBehaviour
     }
     private void CheckingForLandingGround()
     {
-        if (BallRigidBody.velocity == Vector2.zero)
+        if (BallRigidBody.velocity == Vector2.zero )
         {
             if (Physics2D.Raycast(transform.position, Vector2.down, GroundLayer).collider)
             {
                 OnBallLandedOutsideHole?.Invoke();
-                this.enabled = false;
                 print("You Loose!");
+                this.enabled = false;
             }
         }
     }
