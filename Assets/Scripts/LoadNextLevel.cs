@@ -14,10 +14,10 @@ public class LoadNextLevel : MonoBehaviour
 
     void LoadWithDelay()
     {
-        Invoke("LoadLevel", DelayBeforeNextLevelLoading);
+        Invoke("RestartLevel", DelayBeforeNextLevelLoading);
     }
 
-    void LoadLevel()
+    public void RestartLevel()
     {
         SceneManager.LoadScene(0);
     }
@@ -25,7 +25,7 @@ public class LoadNextLevel : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
-            LoadLevel();
+            RestartLevel();
     }
 
     void OnDisable()

@@ -31,7 +31,7 @@ public class ResetValues : MonoBehaviour
         PlayerPrefs.SetInt(IsItFirstTimeGamePlayed, 0);
     }
 
-    private void ResetGameValues()
+    public void ResetGameValues()
     {
         Score.value = 0;
         DrawSpeed.value = DefaultDrawSpeed;

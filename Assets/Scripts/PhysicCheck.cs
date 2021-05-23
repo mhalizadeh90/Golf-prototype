@@ -19,8 +19,14 @@ public class PhysicCheck : MonoBehaviour
     void OnEnable()
     {
         AimCalculator.OnAimingIsFinished += StartCheckingForLandingGround;
+        EnterHole.OnBallEnterHole += DisableCheckingPhysicOnWin;
     }
 
+
+    void DisableCheckingPhysicOnWin()
+    {
+        this.enabled = false;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -58,6 +64,7 @@ public class PhysicCheck : MonoBehaviour
     }
     private void CheckingForLandingGround()
     {
+        print("check....");
         if (BallRigidBody.velocity == Vector2.zero )
         {
             if (Physics2D.Raycast(transform.position, Vector2.down, GroundLayer).collider)
@@ -72,6 +79,7 @@ public class PhysicCheck : MonoBehaviour
     void OnDisable()
     {
         AimCalculator.OnAimingIsFinished -= StartCheckingForLandingGround;
+        EnterHole.OnBallEnterHole -= DisableCheckingPhysicOnWin;
     }
 
     public static Action OnBallLandedOutsideHole;
