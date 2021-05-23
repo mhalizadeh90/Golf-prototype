@@ -6,6 +6,12 @@ using System;
 public class SetRandomPosition : MonoBehaviour
 {
     [SerializeField] float MinX, MaxX;
+    [Space][SerializeField] GameObject GravityHoleEffect;
+
+    void OnEnable()
+    {
+        GameModeSwitches.OnGameModeChanged += SetGravityEffectState;
+    }
 
     void Start()
     {
@@ -16,6 +22,17 @@ public class SetRandomPosition : MonoBehaviour
     private void SetNewRandomPosition()
     {
         transform.position = new Vector3(UnityEngine.Random.Range(MinX, MaxX), transform.position.y, transform.position.z);
+    }
+
+    void SetGravityEffectState(bool state)
+    {
+        GravityHoleEffect.SetActive(state);
+    }
+
+
+    void OnDisable()
+    {
+        GameModeSwitches.OnGameModeChanged -= SetGravityEffectState;
     }
 
     public static Action<float> OnHolePositionIsSet;

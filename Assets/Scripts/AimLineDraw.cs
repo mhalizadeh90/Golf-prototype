@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrajectoryController : MonoBehaviour
+public class AimLineDraw : MonoBehaviour
 {
     [Range(2, 30)]
     [SerializeField] int resolution;
@@ -14,8 +14,9 @@ public class TrajectoryController : MonoBehaviour
     public Vector2Variable aimedDirection;
     float yLimit;
     private float g;
-    
-    IEnumerator AimingCoroutine;
+    [SerializeField] float xPositionOfEndScreen;
+    Coroutine AimingCoroutine;
+    bool isReachedEndScreen = false;
 
     void Awake()
     {
@@ -28,25 +29,26 @@ public class TrajectoryController : MonoBehaviour
 
         g = Mathf.Abs(Physics2D.gravity.y);
         yLimit = transform.position.y;
-
-        AimingCoroutine = RenderArc();
+        AimingCoroutine = null;
     }
 
     void OnEnable()
     {
-        InputCollector.OnAimingIsStarted += StartAiming;
-        InputCollector.OnAimingIsFinished += StopAiming;
+        AimCalculator.OnAimingIsStarted += StartAiming;
+        AimCalculator.OnAimingIsFinished += StopAiming;
     }
 
 
     void StartAiming()
     {
-        StartCoroutine(AimingCoroutine);
+        AimingCoroutine = StartCoroutine(RenderArc());
     }
 
     void StopAiming()
     {
-        StopCoroutine(AimingCoroutine);
+        if(AimingCoroutine != null)
+            StopCoroutine(AimingCoroutine);
+
         DisableLinesDot();
     }
 
@@ -63,6 +65,10 @@ public class TrajectoryController : MonoBehaviour
         while (true)
         {
             CopyPositions(CalculateLineArray());
+
+            if(isReachedEndScreen)
+                OnAimReacheEndScreen?.Invoke();
+
             yield return null;
         }
     }
@@ -86,6 +92,7 @@ public class TrajectoryController : MonoBehaviour
         {
             var t = lowestTimeValue * i;
             lineArray[i] = CalculateLinePoint(t);
+            isReachedEndScreen = (lineArray[i].x > xPositionOfEndScreen);
         }
         return lineArray;
     }
@@ -122,8 +129,10 @@ public class TrajectoryController : MonoBehaviour
 
     void OnDisable()
     {
-        InputCollector.OnAimingIsStarted -= StartAiming;
-        InputCollector.OnAimingIsFinished -= StopAiming;
+        AimCalculator.OnAimingIsStarted -= StartAiming;
+        AimCalculator.OnAimingIsFinished -= StopAiming;
     }
 
+
+    public static Action OnAimReacheEndScreen;
 }

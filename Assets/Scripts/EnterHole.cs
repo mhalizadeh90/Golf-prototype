@@ -9,7 +9,7 @@ public class EnterHole : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Player Enter Hole");
+        print("Enter Hole");
         OnBallEnterHole?.Invoke();
     }
 
