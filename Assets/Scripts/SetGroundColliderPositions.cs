@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class SetGroundColliderPositions : MonoBehaviour
 {
+    #region Fields
 
-    [SerializeField] EdgeCollider2D LeftCollider;
-    [SerializeField] EdgeCollider2D RightCollider;
+    [SerializeField] EdgeCollider2D LeftEdgeCollider;
+    [SerializeField] EdgeCollider2D RightEdgeCollider;
 
-    //const float rightPositionOffset = -6.81f;
-    //const float leftPositionOffset = -7.73f;
-    const float rightPositionOffset = -6.69f;
-    const float leftPositionOffset = -7.91f;
+    const float rightColliderOffset = -6.69f;
+    const float leftColliderOffset = -7.91f;
 
-    Vector2[] LeftColliderPoints;
-    Vector2[] RightColliderPoints;
+    Vector2[] LeftEdgeColliderPoints;
+    Vector2[] RightEdgeColliderPoints;
+
+    #endregion
 
     void Awake()
     {
-        LeftColliderPoints = LeftCollider.points;
-        RightColliderPoints = RightCollider.points;
-
+        LeftEdgeColliderPoints = LeftEdgeCollider.points;
+        RightEdgeColliderPoints = RightEdgeCollider.points;
     }
 
     void OnEnable()
     {
-        SetRandomPosition.OnHolePositionIsSet += SetColliderPositions;
+        HoleRandomPosition.OnHolePositionIsSet += SetColliderPositions;
     }
 
-    void SetColliderPositions(float xPositionHole)
+    void SetColliderPositions(float xPositionOfHole)
     {
-        LeftColliderPoints[1].x = xPositionHole + leftPositionOffset;
-        RightColliderPoints[1].x = xPositionHole + rightPositionOffset;
+        LeftEdgeColliderPoints[1].x = xPositionOfHole + leftColliderOffset;
+        RightEdgeColliderPoints[1].x = xPositionOfHole + rightColliderOffset;
 
-        LeftCollider.points = LeftColliderPoints;
-        RightCollider.points = RightColliderPoints;
+        LeftEdgeCollider.points = LeftEdgeColliderPoints;
+        RightEdgeCollider.points = RightEdgeColliderPoints;
     }
 
     void OnDisable()
     {
-        SetRandomPosition.OnHolePositionIsSet -= SetColliderPositions;
+        HoleRandomPosition.OnHolePositionIsSet -= SetColliderPositions;
     }
 }

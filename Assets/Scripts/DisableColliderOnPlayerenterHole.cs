@@ -12,7 +12,7 @@ public class DisableColliderOnPlayerenterHole : MonoBehaviour
     }
     void OnEnable()
     {
-        EnterHole.OnBallEnterHole += DisableGroundCollider;
+        BallInHoleDetection.OnBallEnterHole += DisableGroundCollider;
     }
 
     void DisableGroundCollider()
@@ -22,6 +22,6 @@ public class DisableColliderOnPlayerenterHole : MonoBehaviour
 
     void OnDisable()
     {
-        EnterHole.OnBallEnterHole -= DisableGroundCollider;
+        BallInHoleDetection.OnBallEnterHole -= DisableGroundCollider;
     }
 }

@@ -6,60 +6,89 @@ using System;
 
 public class GameModeSwitches : MonoBehaviour
 {
-    [SerializeField]Toggle EasyModeToggle;
-    [SerializeField]Toggle NormalModeToggle;
+    #region Fields
+
+    [Header("Easy Mode Toggle Reference")]
+    [SerializeField] Toggle EasyModeToggle;
+    [SerializeField] Image EasyModeBackground;
+
+    [Header("Normal Mode Toggle Reference")]
+    [SerializeField] Toggle NormalModeToggle;
+    [SerializeField] Image NormalModeBackground;
+
+    [Header("Selected Game Mode Color")]
+    [SerializeField] Color SelectedColor;
+
+    [Header("Selected Game Mode Reference")]
     [SerializeField] BoolVariable isEasyModeEnabled;
-   
+
+	#endregion    
+
     void Start()
     {
-        if (isEasyModeEnabled.value)
-            SetEasyModeToggle();
-        else
-            SetNormalModeToggle();
+        SelectGameModeBasedOnSavedReference();
     }
 
-
-    public void EasyMode()
+    public void OnEasyModeValueCahnged()
     {
-
         if (!EasyModeToggle.isOn)
             return;
 
-        SetEasyModeToggle();
-        OnGameModeChanged?.Invoke(true);
+        SelectEasyModeToggle();
         isEasyModeEnabled.value = true;
+        OnEasyModeSelected?.Invoke();
     }
 
-    public void NormalMode()
+    public void OnNormalModeValueChanged()
     {
-
         if (!NormalModeToggle.isOn)
             return;
 
-        SetNormalModeToggle();
-        OnGameModeChanged?.Invoke(false);
+        SelectNormalModeToggle();
         isEasyModeEnabled.value = false;
+        OnNormalModeSelected?.Invoke();
     }
 
-
-    void SetNormalModeToggle()
+    void SelectNormalModeToggle()
     {
+        #region Enable Normal Mode Toggle
         NormalModeToggle.isOn = true;
-        EasyModeToggle.isOn = false;
-
         NormalModeToggle.interactable = false;
+        NormalModeBackground.color = SelectedColor;
+        #endregion
+
+        #region Disable Easy Mode Toggle
+        EasyModeToggle.isOn = false;
         EasyModeToggle.interactable = true;
+        EasyModeBackground.color = Color.white;
+        #endregion
     }
 
-    void SetEasyModeToggle()
+    void SelectEasyModeToggle()
     {
+        #region Enable Easy Mode Toggle
         EasyModeToggle.isOn = true;
-        NormalModeToggle.isOn = false;
-       
-        NormalModeToggle.interactable = true;
+        EasyModeBackground.color = SelectedColor;
         EasyModeToggle.interactable = false;
+        #endregion
+
+        #region Disable Normal Mode Toggle
+        NormalModeToggle.isOn = false;
+        NormalModeToggle.interactable = true;
+        NormalModeBackground.color = Color.white;
+        #endregion
     }
 
-    public static Action<bool> OnGameModeChanged;
+    private void SelectGameModeBasedOnSavedReference()
+    {
+        if (isEasyModeEnabled.value)
+            SelectEasyModeToggle();
+        else
+            SelectNormalModeToggle();
+    }
+
+    // --------- Events ----------------
+    public static Action OnEasyModeSelected;
+    public static Action OnNormalModeSelected;
 
 }

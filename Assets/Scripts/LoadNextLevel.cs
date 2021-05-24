@@ -9,7 +9,7 @@ public class LoadNextLevel : MonoBehaviour
 
     void OnEnable()
     {
-        EnterHole.OnBallEnterHole += LoadWithDelay;
+        BallInHoleDetection.OnBallEnterHole += LoadWithDelay;
     }
 
     void LoadWithDelay()
@@ -34,7 +34,7 @@ public class LoadNextLevel : MonoBehaviour
 
     void OnDisable()
     {
-        EnterHole.OnBallEnterHole -= LoadWithDelay;
+        BallInHoleDetection.OnBallEnterHole -= LoadWithDelay;
     }
 
 }

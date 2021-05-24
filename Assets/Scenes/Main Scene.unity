@@ -285,7 +285,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1578205731}
-        m_MethodName: NormalMode
+        m_MethodName: OnNormalModeValueChanged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 149221419}
   - component: {fileID: 149221421}
   m_Layer: 0
-  m_Name: Particle
+  m_Name: Wining Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5399,7 +5399,7 @@ GameObject:
   - component: {fileID: 182714042}
   - component: {fileID: 182714041}
   m_Layer: 5
-  m_Name: White Background
+  m_Name: Background (normal)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5891,7 +5891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LosePanel: {fileID: 912272763}
-  DelayBeforeShowGameOver: 0.5
+  DelayBeforeShowGameOver: 1
 --- !u!114 &525719781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5932,7 +5932,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527879554}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.74, y: -0.02, z: 0}
+  m_LocalPosition: {x: 4.74, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1931736527}
@@ -6158,7 +6158,7 @@ GameObject:
   - component: {fileID: 566564769}
   m_Layer: 8
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6418,6 +6418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 659270702}
   - component: {fileID: 659270703}
+  - component: {fileID: 659270704}
   m_Layer: 0
   m_Name: Hole
   m_TagString: Untagged
@@ -6454,8 +6455,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0546fbbd0fa7e5e47a34e3ccb482e076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinX: 4
-  MaxX: 14
+  MinValidXPosition: 4
+  MaxValidXPosition: 14
+--- !u!114 &659270704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659270701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6dc97094e5eb184b9adfeaa800804c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   GravityHoleEffect: {fileID: 936283298}
 --- !u!1 &667644937
 GameObject:
@@ -6470,7 +6483,7 @@ GameObject:
   - component: {fileID: 667644939}
   - component: {fileID: 667644938}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6548,10 +6561,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 832232907}
-  - {fileID: 753802291}
   - {fileID: 1574665945}
   - {fileID: 1578205729}
   - {fileID: 912272764}
+  - {fileID: 753802291}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6572,7 +6585,7 @@ GameObject:
   - component: {fileID: 739400299}
   - component: {fileID: 739400298}
   m_Layer: 5
-  m_Name: White Background
+  m_Name: Background (easy)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6698,7 +6711,7 @@ Transform:
   m_LocalScale: {x: 0.98643655, y: 0.98643655, z: 0.98643655}
   m_Children: []
   m_Father: {fileID: 667644941}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760340381
 GameObject:
@@ -7112,7 +7125,7 @@ GameObject:
   - component: {fileID: 832232907}
   - component: {fileID: 832232908}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Score (HUD)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7434,7 +7447,7 @@ RectTransform:
   - {fileID: 799688257}
   - {fileID: 531849869}
   m_Father: {fileID: 667644941}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7642,7 +7655,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194604125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.5, y: 0, z: 0}
+  m_LocalPosition: {x: -5.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1931736527}
@@ -7758,7 +7771,7 @@ GameObject:
   - component: {fileID: 1228890373}
   - component: {fileID: 1228890372}
   m_Layer: 0
-  m_Name: Ground Down
+  m_Name: Ground Down Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8156,7 +8169,7 @@ GameObject:
   - component: {fileID: 1349138276}
   - component: {fileID: 1349138277}
   m_Layer: 0
-  m_Name: object_hole
+  m_Name: Hole Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8293,7 +8306,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1578205731}
-        m_MethodName: EasyMode
+        m_MethodName: OnEasyModeValueCahnged
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8414,6 +8427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1413752894}
   - component: {fileID: 1413752895}
+  - component: {fileID: 1413752896}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -8475,7 +8489,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: cba7167f11d86cb4291a853abb4e5f8b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7924528, g: 0.3875092, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8485,6 +8499,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1413752896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413752893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79c19a0c6e0399e478a36a485432705e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1550365032
 GameObject:
   m_ObjectHideFlags: 0
@@ -8727,7 +8753,7 @@ GameObject:
   - component: {fileID: 1574665947}
   - component: {fileID: 1574665946}
   m_Layer: 5
-  m_Name: Help Text
+  m_Name: Help Input Text  (HUD)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8745,7 +8771,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 667644941}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -8805,7 +8831,7 @@ GameObject:
   - component: {fileID: 1578205730}
   - component: {fileID: 1578205731}
   m_Layer: 5
-  m_Name: PlayMode Buttons
+  m_Name: PlayMode Toggles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8825,7 +8851,7 @@ RectTransform:
   - {fileID: 1406500631}
   - {fileID: 42104288}
   m_Father: {fileID: 667644941}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -8870,7 +8896,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EasyModeToggle: {fileID: 1406500630}
+  EasyModeBackground: {fileID: 739400298}
   NormalModeToggle: {fileID: 42104289}
+  NormalModeBackground: {fileID: 182714041}
+  SelectedColor: {r: 0.6745463, g: 1, b: 0.5707547, a: 1}
   isEasyModeEnabled: {fileID: 11400000, guid: b8b3ebed45db98842b57a2e5063c69f5, type: 2}
 --- !u!1 &1581024558
 GameObject:
@@ -9202,7 +9231,7 @@ GameObject:
   - component: {fileID: 1854765039}
   - component: {fileID: 1854765040}
   m_Layer: 0
-  m_Name: Enter Hole Triger
+  m_Name: Hole Detection Triger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9235,7 +9264,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.32621706}
+  m_Offset: {x: 0, y: 0.34614193}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -9246,7 +9275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.93, y: 0.3224342}
+  m_Size: {x: 0.93, y: 0.36228395}
   m_EdgeRadius: 0
 --- !u!114 &1854765040
 MonoBehaviour:
@@ -9257,7 +9286,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1854765037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be6d16de248de5a4e9aef8c3cce062c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 21b843ae0bdd5af4fbef0935bc94d81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1856186416
@@ -9677,7 +9706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931736526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.63, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1194604126}
@@ -9953,7 +9982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2146383354}
   m_Layer: 0
-  m_Name: Grass Ground
+  m_Name: Grass Ground Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

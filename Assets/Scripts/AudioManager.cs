@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
     //TODO: ASSIGN EVENTS TO EACH SFX SOUND PLAY
     void OnEnable()
     {
-        EnterHole.OnBallEnterHole += PlayWinSFX;
+        BallInHoleDetection.OnBallEnterHole += PlayWinSFX;
         PhysicCheck.OnBallLandedOutsideHole += PlayLoseSFX;
         AimCalculator.OnAimingIsFinished += PlayShootSFX;
         AimCalculator.OnAimingIsStarted += PlayAimSFX;
@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
     //TODO: De-ASSIGN EVENTS TO EACH SFX SOUND PLAY
     void OnDisable()
     {
-        EnterHole.OnBallEnterHole -= PlayWinSFX;
+        BallInHoleDetection.OnBallEnterHole -= PlayWinSFX;
         PhysicCheck.OnBallLandedOutsideHole -= PlayLoseSFX;
         AimCalculator.OnAimingIsFinished -= PlayShootSFX;
         AimCalculator.OnAimingIsStarted -= PlayAimSFX;

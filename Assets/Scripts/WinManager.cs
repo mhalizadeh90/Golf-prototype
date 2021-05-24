@@ -17,7 +17,7 @@ public class WinManager : MonoBehaviour
 
     void OnEnable()
     {
-        EnterHole.OnBallEnterHole += UpdateLevelStats;
+        BallInHoleDetection.OnBallEnterHole += UpdateLevelStats;
     }
 
     void UpdateLevelStats()
@@ -29,6 +29,6 @@ public class WinManager : MonoBehaviour
 
     void OnDisable()
     {
-        EnterHole.OnBallEnterHole -= UpdateLevelStats;
+        BallInHoleDetection.OnBallEnterHole -= UpdateLevelStats;
     }
 }
