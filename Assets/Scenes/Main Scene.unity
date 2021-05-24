@@ -5891,7 +5891,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LosePanel: {fileID: 912272763}
-  DelayBeforeShowGameOver: 1
+  DelayBeforeShowGameOver: 0.5
 --- !u!114 &525719781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6070,6 +6070,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 980585710}
+        m_MethodName: PlayClickSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 525719776}
         m_MethodName: ResetGameValues
         m_Mode: 1
@@ -6082,13 +6093,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 525719779}
-        m_MethodName: RestartLevel
-        m_Mode: 1
+        m_MethodName: LoadWithDelay
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.5
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -7541,8 +7552,9 @@ MonoBehaviour:
   ClickSFX: {fileID: 8300000, guid: 9d3a5427dab656440a6b23cb50b62b53, type: 3}
   WinSFX: {fileID: 8300000, guid: e13f0c60a57bde54191f8dfd9cb5c566, type: 3}
   LoseSFX: {fileID: 8300000, guid: bbae13712fed6984fb777d7b362717b4, type: 3}
-  AimSFX: {fileID: 0}
-  IncreasePitchSpeed: 1
+  ShootSFX: {fileID: 8300000, guid: 1f8a794560605c74cbe6842e547c6e8f, type: 3}
+  AimSFX: {fileID: 8300000, guid: 730ddd6e1255edc488da040241a25bd6, type: 3}
+  IncreasePitchSpeed: 2.5
 --- !u!4 &980585711
 Transform:
   m_ObjectHideFlags: 0

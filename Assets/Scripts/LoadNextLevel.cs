@@ -16,8 +16,12 @@ public class LoadNextLevel : MonoBehaviour
     {
         Invoke("RestartLevel", DelayBeforeNextLevelLoading);
     }
+    public void LoadWithDelay(float delay)
+    {
+        Invoke("RestartLevel", delay);
+    }
 
-    public void RestartLevel()
+    void RestartLevel()
     {
         SceneManager.LoadScene(0);
     }

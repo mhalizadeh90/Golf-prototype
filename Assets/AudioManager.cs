@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip ClickSFX;
     [SerializeField] AudioClip WinSFX;
     [SerializeField] AudioClip LoseSFX;
+    [SerializeField] AudioClip ShootSFX;
     [SerializeField] AudioClip AimSFX;
     [Space]
     [SerializeField] float IncreasePitchSpeed;
@@ -25,6 +26,9 @@ public class AudioManager : MonoBehaviour
     {
         EnterHole.OnBallEnterHole += PlayWinSFX;
         PhysicCheck.OnBallLandedOutsideHole += PlayLoseSFX;
+        AimCalculator.OnAimingIsFinished += PlayShootSFX;
+        AimCalculator.OnAimingIsStarted += PlayAimSFX;
+        AimCalculator.OnAimingIsFinished += StopPlayAimSFX;
     }
     void PlayWinSFX()
     {
@@ -47,9 +51,16 @@ public class AudioManager : MonoBehaviour
         SFXPlayer.Play();
     }
 
+    void PlayShootSFX()
+    {
+        SFXPlayer.clip = ShootSFX;
+        SFXPlayer.loop = false;
+        SFXPlayer.Play();
+    }
+
     void PlayAimSFX()
     {
-        SFXPlayer.clip = LoseSFX;
+        SFXPlayer.clip = AimSFX;
         SFXPlayer.loop = true;
         StartCoroutine(ChangePitchRoutine);
         SFXPlayer.Play();
@@ -59,15 +70,15 @@ public class AudioManager : MonoBehaviour
     {
         StopCoroutine(ChangePitchRoutine);
         SFXPlayer.pitch = 1;
-        SFXPlayer.Stop();
+        SFXPlayer.loop = false;
     }
 
     IEnumerator ChangePitch()
     {
-        SFXPlayer.pitch = -1;
+        SFXPlayer.pitch = 0;
         while (true)
         {
-            SFXPlayer.pitch += Time.deltaTime + IncreasePitchSpeed;
+            SFXPlayer.pitch += Time.deltaTime * IncreasePitchSpeed;
             yield return null;
         }
     }
@@ -77,6 +88,9 @@ public class AudioManager : MonoBehaviour
     {
         EnterHole.OnBallEnterHole -= PlayWinSFX;
         PhysicCheck.OnBallLandedOutsideHole -= PlayLoseSFX;
+        AimCalculator.OnAimingIsFinished -= PlayShootSFX;
+        AimCalculator.OnAimingIsStarted -= PlayAimSFX;
+        AimCalculator.OnAimingIsFinished -= StopPlayAimSFX;
     }
 
 }

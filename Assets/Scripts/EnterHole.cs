@@ -5,11 +5,10 @@ using System;
 
 public class EnterHole : MonoBehaviour
 {
-    
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         print("Enter Hole");
+        GetComponent<Collider2D>().enabled = false;
         OnBallEnterHole?.Invoke();
     }
 

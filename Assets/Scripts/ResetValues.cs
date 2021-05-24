@@ -41,7 +41,6 @@ public class ResetValues : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        Debug.Log("Application ending");
         PlayerPrefs.SetInt(IsItFirstTimeGamePlayed, 1);
     }
 }

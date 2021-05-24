@@ -61,4 +61,5 @@ public class GameModeSwitches : MonoBehaviour
     }
 
     public static Action<bool> OnGameModeChanged;
+
 }
