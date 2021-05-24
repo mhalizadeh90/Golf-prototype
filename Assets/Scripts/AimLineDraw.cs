@@ -34,8 +34,8 @@ public class AimLineDraw : MonoBehaviour
 
     void OnEnable()
     {
-        AimCalculator.OnAimingIsStarted += StartAiming;
-        AimCalculator.OnAimingIsFinished += StopAiming;
+        AimingInputReciever.OnAimingIsStarted += StartAiming;
+        AimingInputReciever.OnAimingIsFinished += StopAiming;
     }
 
 
@@ -129,8 +129,8 @@ public class AimLineDraw : MonoBehaviour
 
     void OnDisable()
     {
-        AimCalculator.OnAimingIsStarted -= StartAiming;
-        AimCalculator.OnAimingIsFinished -= StopAiming;
+        AimingInputReciever.OnAimingIsStarted -= StartAiming;
+        AimingInputReciever.OnAimingIsFinished -= StopAiming;
     }
 
 

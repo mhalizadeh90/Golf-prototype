@@ -6156,6 +6156,7 @@ GameObject:
   - component: {fileID: 566564767}
   - component: {fileID: 566564766}
   - component: {fileID: 566564769}
+  - component: {fileID: 566564770}
   m_Layer: 8
   m_Name: Ball
   m_TagString: Ball
@@ -6303,14 +6304,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 566564761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47024ab3539855044bb1e75eba74404c, type: 3}
+  m_Script: {fileID: 11500000, guid: 183b9f023d4cac54b99b16bf2e14df3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimDirection: {fileID: 11400000, guid: 57ea2026907ce3b4eb81b5b8d034e2e7, type: 2}
-  InitialAimLine: {x: 2, y: 8}
-  xIncreaseSteps: 1
-  yIncreaseSteps: 0.8
-  AimDrawSpeed: {fileID: 11400000, guid: a8ffc749d073c8e42ba6f54d543cd5bb, type: 2}
+  AimingDirection: {fileID: 11400000, guid: 57ea2026907ce3b4eb81b5b8d034e2e7, type: 2}
+  AimingSpeed: {fileID: 11400000, guid: a8ffc749d073c8e42ba6f54d543cd5bb, type: 2}
+  DefaultAimingDirection: {x: 3, y: 7}
+  growthStepInXAxis: 1
+  growthStepInYAxis: 0.7
 --- !u!114 &566564769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6320,13 +6321,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 566564761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9c0756864c4652478c0f624c81d7e4c, type: 3}
+  m_Script: {fileID: 11500000, guid: ae68aea1fb567804b86cd6ad771f8c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecreaseVelocityPower: 25
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &566564770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566564761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055b870f00c6bca44bb4ef5b2ed4d931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecreasePower: 20
 --- !u!1 &608669969
 GameObject:
   m_ObjectHideFlags: 0
@@ -7370,8 +7383,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -16.312, y: -0.5}
-  m_SizeDelta: {x: -75.17697, y: -3}
+  m_AnchoredPosition: {x: -18, y: -0.5}
+  m_SizeDelta: {x: -73.094505, y: -3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903864213
 MonoBehaviour:
@@ -7628,8 +7641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c8644e8a2cb5744a5243cd083dc9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftCollider: {fileID: 1856186418}
-  RightCollider: {fileID: 1197756062}
+  LeftEdgeCollider: {fileID: 1856186418}
+  RightEdgeCollider: {fileID: 1197756062}
 --- !u!1 &1194604125
 GameObject:
   m_ObjectHideFlags: 0
@@ -8428,6 +8441,7 @@ GameObject:
   - component: {fileID: 1413752894}
   - component: {fileID: 1413752895}
   - component: {fileID: 1413752896}
+  - component: {fileID: 1413752897}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -8443,7 +8457,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413752893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.73, y: 0.7526324, z: 0}
+  m_LocalPosition: {x: 0.73, y: 0.145, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2134584173}
@@ -8511,6 +8525,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79c19a0c6e0399e478a36a485432705e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1413752897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413752893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ee97ca856874094d88b6bb05b774e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FlagNewYPosition: 0.85
 --- !u!1 &1550365032
 GameObject:
   m_ObjectHideFlags: 0

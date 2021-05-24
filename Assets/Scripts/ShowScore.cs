@@ -18,7 +18,7 @@ public class ShowScore : MonoBehaviour
 
     void OnEnable()
     {
-        PhysicCheck.OnBallLandedOutsideHole += showScore;
+        LandingGroundCheck.OnBallLandedOutsideHole += showScore;
     }
 
     void showScore()
@@ -32,6 +32,6 @@ public class ShowScore : MonoBehaviour
 
     void OnDisable()
     {
-        PhysicCheck.OnBallLandedOutsideHole -= showScore;
+        LandingGroundCheck.OnBallLandedOutsideHole -= showScore;
     }
 }

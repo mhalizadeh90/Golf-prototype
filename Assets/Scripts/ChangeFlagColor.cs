@@ -15,7 +15,7 @@ public class ChangeFlagColor : MonoBehaviour
     void OnEnable()
     {
         BallInHoleDetection.OnBallEnterHole += setFlagColorToGreen;
-        PhysicCheck.OnBallLandedOutsideHole += setFlagColorToRed;
+        LandingGroundCheck.OnBallLandedOutsideHole += setFlagColorToRed;
     }
 
     void setFlagColorToGreen()
@@ -31,7 +31,7 @@ public class ChangeFlagColor : MonoBehaviour
     void OnDisable()
     {
         BallInHoleDetection.OnBallEnterHole -= setFlagColorToGreen;
-        PhysicCheck.OnBallLandedOutsideHole -= setFlagColorToRed;
+        LandingGroundCheck.OnBallLandedOutsideHole -= setFlagColorToRed;
     }
 
 }

@@ -25,10 +25,10 @@ public class AudioManager : MonoBehaviour
     void OnEnable()
     {
         BallInHoleDetection.OnBallEnterHole += PlayWinSFX;
-        PhysicCheck.OnBallLandedOutsideHole += PlayLoseSFX;
-        AimCalculator.OnAimingIsFinished += PlayShootSFX;
-        AimCalculator.OnAimingIsStarted += PlayAimSFX;
-        AimCalculator.OnAimingIsFinished += StopPlayAimSFX;
+        LandingGroundCheck.OnBallLandedOutsideHole += PlayLoseSFX;
+        AimingInputReciever.OnAimingIsFinished += PlayShootSFX;
+        AimingInputReciever.OnAimingIsStarted += PlayAimSFX;
+        AimingInputReciever.OnAimingIsFinished += StopPlayAimSFX;
     }
     void PlayWinSFX()
     {
@@ -87,10 +87,10 @@ public class AudioManager : MonoBehaviour
     void OnDisable()
     {
         BallInHoleDetection.OnBallEnterHole -= PlayWinSFX;
-        PhysicCheck.OnBallLandedOutsideHole -= PlayLoseSFX;
-        AimCalculator.OnAimingIsFinished -= PlayShootSFX;
-        AimCalculator.OnAimingIsStarted -= PlayAimSFX;
-        AimCalculator.OnAimingIsFinished -= StopPlayAimSFX;
+        LandingGroundCheck.OnBallLandedOutsideHole -= PlayLoseSFX;
+        AimingInputReciever.OnAimingIsFinished -= PlayShootSFX;
+        AimingInputReciever.OnAimingIsStarted -= PlayAimSFX;
+        AimingInputReciever.OnAimingIsFinished -= StopPlayAimSFX;
     }
 
 }

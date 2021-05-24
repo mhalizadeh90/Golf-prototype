@@ -14,7 +14,7 @@ public class LoseManager : MonoBehaviour
 
     void OnEnable()
     {
-        PhysicCheck.OnBallLandedOutsideHole += ShowGameOverPanel;
+        LandingGroundCheck.OnBallLandedOutsideHole += ShowGameOverPanel;
     }
 
 
@@ -30,7 +30,7 @@ public class LoseManager : MonoBehaviour
 
     void OnDisable()
     {
-        PhysicCheck.OnBallLandedOutsideHole -= ShowGameOverPanel;
+        LandingGroundCheck.OnBallLandedOutsideHole -= ShowGameOverPanel;
     }
 
 }
