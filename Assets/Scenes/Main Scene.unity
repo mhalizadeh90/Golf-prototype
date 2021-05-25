@@ -5790,7 +5790,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.71, z: -10}
+  m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6258,7 +6258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566564761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.69, y: -1.754901, z: 0}
+  m_LocalPosition: {x: -7.69, y: 0.004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6289,10 +6289,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47735d187db0f34458915463343fa10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolution: 20
   AimDotPrefab: {fileID: 3273872254139496204, guid: 80ee090c13363954d83a7ce6799ca2cf,
     type: 3}
-  aimedDirection: {fileID: 11400000, guid: 57ea2026907ce3b4eb81b5b8d034e2e7, type: 2}
+  AimDotNumber: 20
+  AimDirectionRef: {fileID: 11400000, guid: 57ea2026907ce3b4eb81b5b8d034e2e7, type: 2}
   xPositionOfEndScreen: 9.5
 --- !u!114 &566564768
 MonoBehaviour:
@@ -9540,7 +9540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871367284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.745, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1931736527}
