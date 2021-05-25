@@ -5810,7 +5810,6 @@ GameObject:
   - component: {fileID: 525719778}
   - component: {fileID: 525719782}
   - component: {fileID: 525719780}
-  - component: {fileID: 525719781}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -5830,12 +5829,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0b50ae1ac72d1428659d771be39e95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
-  DrawSpeed: {fileID: 11400000, guid: a8ffc749d073c8e42ba6f54d543cd5bb, type: 2}
-  DefaultDrawSpeed: 4
-  HelpButtonText: {fileID: 1574665946}
-  HelpText: Press and hold "Space Bar" to shoot the ball.
-  EasyMode: {fileID: 11400000, guid: b8b3ebed45db98842b57a2e5063c69f5, type: 2}
+  scoreRef: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
+  AimingSpeedRef: {fileID: 11400000, guid: a8ffc749d073c8e42ba6f54d543cd5bb, type: 2}
+  DefaultAimingSpeed: 4
+  TutorialTextUI: {fileID: 1574665946}
+  TutorialText: Press and hold "Space Bar" to shoot the ball.
+  EasyModeStateRef: {fileID: 11400000, guid: b8b3ebed45db98842b57a2e5063c69f5, type: 2}
 --- !u!4 &525719777
 Transform:
   m_ObjectHideFlags: 0
@@ -5862,8 +5861,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc76b2734e525c047bf90539674c29e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreRef: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
   scoreTextUI: {fileID: 1868118615}
+  HighScoreText: {fileID: 1413207550}
+  CurrentScoreText: {fileID: 2128482183}
+  scoreRef: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
 --- !u!114 &525719779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5891,21 +5892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverPanel: {fileID: 912272763}
   DelayBeforeGameOver: 1
---- !u!114 &525719781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525719775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa08005ad353c61439d3071f5a2a1147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HighScoreText: {fileID: 1413207550}
-  CurrentScoreText: {fileID: 2128482183}
-  score: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
 --- !u!114 &525719782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8793,7 +8779,7 @@ GameObject:
   - component: {fileID: 1574665947}
   - component: {fileID: 1574665946}
   m_Layer: 5
-  m_Name: Help Input Text  (HUD)
+  m_Name: Tutorial Text  (HUD)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
