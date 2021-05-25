@@ -9,32 +9,28 @@ public class LoadNextLevel : MonoBehaviour
 
     void OnEnable()
     {
-        BallInHoleDetection.OnBallEnterHole += LoadWithDelay;
+        BallInHoleDetection.OnBallEnterHole += LoadNewLevelWithDelay;
     }
 
-    void LoadWithDelay()
+    void LoadNewLevelWithDelay()
     {
-        Invoke("RestartLevel", DelayBeforeNextLevelLoading);
+        StartCoroutine(RestartLevel(DelayBeforeNextLevelLoading));
     }
+   
     public void LoadWithDelay(float delay)
     {
-        Invoke("RestartLevel", delay);
+        StartCoroutine(RestartLevel(delay));
     }
 
-    void RestartLevel()
+    IEnumerator RestartLevel(float DelayTime)
     {
+        yield return new WaitForSeconds(DelayTime);
         SceneManager.LoadScene(0);
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-            RestartLevel();
     }
 
     void OnDisable()
     {
-        BallInHoleDetection.OnBallEnterHole -= LoadWithDelay;
+        BallInHoleDetection.OnBallEnterHole -= LoadNewLevelWithDelay;
     }
 
 }

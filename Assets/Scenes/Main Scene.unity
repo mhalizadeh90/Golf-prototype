@@ -5808,6 +5808,7 @@ GameObject:
   - component: {fileID: 525719776}
   - component: {fileID: 525719779}
   - component: {fileID: 525719778}
+  - component: {fileID: 525719782}
   - component: {fileID: 525719780}
   - component: {fileID: 525719781}
   m_Layer: 0
@@ -5861,10 +5862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc76b2734e525c047bf90539674c29e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
-  drawSpeed: {fileID: 11400000, guid: a8ffc749d073c8e42ba6f54d543cd5bb, type: 2}
-  SpeedIncreaseStep: 0.5
-  scoreText: {fileID: 1868118615}
+  scoreRef: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
+  scoreTextUI: {fileID: 1868118615}
 --- !u!114 &525719779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5890,8 +5889,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d04a152d1e2a3b44a43aa39faa3fa86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LosePanel: {fileID: 912272763}
-  DelayBeforeShowGameOver: 1
+  GameOverPanel: {fileID: 912272763}
+  DelayBeforeGameOver: 1
 --- !u!114 &525719781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5907,6 +5906,20 @@ MonoBehaviour:
   HighScoreText: {fileID: 1413207550}
   CurrentScoreText: {fileID: 2128482183}
   score: {fileID: 11400000, guid: c39d92bb3ee49344c93960405044defd, type: 2}
+--- !u!114 &525719782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525719775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08fd40bc13b2814ca9244e25350ee50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AimingSpeedRef: {fileID: 11400000, guid: a8ffc749d073c8e42ba6f54d543cd5bb, type: 2}
+  IncreaseSpeedStep: 0.5
 --- !u!1 &527879554
 GameObject:
   m_ObjectHideFlags: 0
