@@ -9,9 +9,9 @@ public class AimingDotsManager : MonoBehaviour
 
     [SerializeField] GameObject AimDotPrefab;
     [Range(2, 30)] [SerializeField] int AimDotNumber;
-    [SerializeField] Vector2Variable AimDirectionRef;
+    [SerializeField] Vector2Variable AimingVelocityRef;
     [SerializeField] float xPositionOfEndScreen;
-    bool isAimLineReachedEndOfScreen = false;
+    bool isAimLineReachedEndOfScreenX = false;
     private float gravity;
     GameObject[] AimDotsInstantiated;
     IEnumerator ShowAimingDotsCoroutine;
@@ -48,7 +48,7 @@ public class AimingDotsManager : MonoBehaviour
         {
             EnableAimingDots(GetAimingDotPositions());
 
-            if(isAimLineReachedEndOfScreen)
+            if(isAimLineReachedEndOfScreenX)
             {
                 OnAimReacheEndScreen?.Invoke();
                 break;
@@ -62,52 +62,32 @@ public class AimingDotsManager : MonoBehaviour
     {
         Vector3[] aimDotsArray = new Vector3[AimDotNumber + 1];
 
-        var lowestTimeValue = GetMaxTimeX() / AimDotNumber;
-        
+        float ReachTimeStep = GeTimeForBallToReachYPosition() / AimDotNumber;
+       
         for (int i = 0; i < aimDotsArray.Length; i++)
         {
-            var t = lowestTimeValue * i;
-            aimDotsArray[i] = CalculateDotPosition(t);
+            float time = ReachTimeStep * i;
+            aimDotsArray[i] = CalculateDotPosition(time);
 
-            isAimLineReachedEndOfScreen = (aimDotsArray[i].x > xPositionOfEndScreen);
+            isAimLineReachedEndOfScreenX = (aimDotsArray[i].x > xPositionOfEndScreen);
         }
         return aimDotsArray;
     }
 
-    private Vector3 CalculateDotPosition(float t)
+    private Vector3 CalculateDotPosition(float time)
     {
-        float x = AimDirectionRef.value.x *  t;
-        float y = (AimDirectionRef.value.y  * t) - (gravity * Mathf.Pow(t, 2) / 2);
-        return new Vector3(x + transform.position.x, y + transform.position.y);
+        float x = transform.position.x + (AimingVelocityRef.value.x *  time);
+        float y = transform.position.y +  (AimingVelocityRef.value.y  * time) - ((gravity * time * time) / 2);
+        return new Vector3(x,y);
     }
 
-    private float GetMaxTimeY()
+    private float GeTimeForBallToReachYPosition()
     {
-        var v = AimDirectionRef.value.y;
-        var vv = v * v;
+        float velocity = AimingVelocityRef.value.y;
 
-        var t = (v + Mathf.Sqrt(vv + 2 * gravity * (transform.position.y))) / gravity;
-        return t;
+        float time = (velocity + Mathf.Sqrt((velocity* velocity) + 2 * gravity * (transform.position.y))) / gravity;
+        return time;
     }
-
-    private float GetMaxTimeX()
-    {
-        var x = AimDirectionRef.value.x;
-
-        if (x == 0)
-        {
-            AimDirectionRef.value.x = 000.1f;
-            x = AimDirectionRef.value.x;
-        }
-
-        var t = (CalculateDotPosition(GetMaxTimeY()).x - transform.position.x) / x;
-
-        return t;
-    }
-
-
-
-
 
     private void InstantiateAimDotPrefabs()
     {
@@ -137,19 +117,11 @@ public class AimingDotsManager : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
-
     void OnDisable()
     {
         AimingInputReciever.OnAimButtonIsHold -= StartAimLine;
         AimingInputReciever.OnAimButtonIsReleased -= StopAimLine;
     }
-
 
 
     //------------- Events ---------------

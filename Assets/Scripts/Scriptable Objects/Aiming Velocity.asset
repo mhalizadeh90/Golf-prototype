@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccf99922ff1fc8c4e9ed6f60c9165319, type: 3}
-  m_Name: Aiming Direction
+  m_Name: Aiming Velocity
   m_EditorClassIdentifier: 
-  value: {x: 2.2946284, y: 8.2357025}
+  value: {x: 10.71394, y: 12.3997555}
