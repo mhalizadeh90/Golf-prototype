@@ -7,15 +7,18 @@ public class SetDefaultValues : MonoBehaviour
 {
     #region Fields
 
-    [SerializeField] IntVariable scoreRef;
+    [Header("Aiming Speed References:")]
     [SerializeField] FloatVariable AimingSpeedRef;
     [SerializeField] float DefaultAimingSpeed;
 
-    [Space]
+    [Header("Tutorial References:")]
     [SerializeField] Text TutorialTextUI;
     [SerializeField] string TutorialText;
 
-    [Space]
+    [Header("Score File Reference:")]
+    [SerializeField] IntVariable scoreRef;
+   
+    [Header("EasyMode State Reference:")]
     [SerializeField] BoolVariable EasyModeStateRef;
 
     const string isItFirstTimePlayed = "isItFirstTimePlayed";

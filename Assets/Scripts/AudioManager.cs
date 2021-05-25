@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    #region Fields
+    [Header("Audiosource For Playing SFX")]
     [SerializeField] AudioSource SFXPlayer;
-    [Space]
+   
+    [Header("Audio Clip References")]
     [SerializeField] AudioClip ClickSFX;
     [SerializeField] AudioClip WinSFX;
     [SerializeField] AudioClip LoseSFX;
     [SerializeField] AudioClip ShootSFX;
     [SerializeField] AudioClip AimSFX;
-    [Space]
-    [SerializeField] float IncreasePitchSpeed;
+
+    [Header("The Increasing Pitch Steps When Aiming")]
+    [SerializeField] float IncreasePitchSteps;
 
     IEnumerator ChangePitchRoutine;
 
+    #endregion
+   
     void Awake()
     {
         ChangePitchRoutine = ChangePitch();
     }
     
-    //TODO: ASSIGN EVENTS TO EACH SFX SOUND PLAY
     void OnEnable()
     {
         BallInHoleDetection.OnBallEnterHole += PlayWinSFX;
@@ -33,28 +38,24 @@ public class AudioManager : MonoBehaviour
     void PlayWinSFX()
     {
         SFXPlayer.clip = WinSFX;
-        SFXPlayer.loop = false;
         SFXPlayer.Play();
     }
 
     void PlayLoseSFX()
     {
         SFXPlayer.clip = LoseSFX;
-        SFXPlayer.loop = false;
         SFXPlayer.Play();
     }
 
     public void PlayClickSFX()
     {
         SFXPlayer.clip = ClickSFX;
-        SFXPlayer.loop = false;
         SFXPlayer.Play();
     }
 
     void PlayShootSFX()
     {
         SFXPlayer.clip = ShootSFX;
-        SFXPlayer.loop = false;
         SFXPlayer.Play();
     }
 
@@ -78,12 +79,11 @@ public class AudioManager : MonoBehaviour
         SFXPlayer.pitch = 0;
         while (true)
         {
-            SFXPlayer.pitch += Time.deltaTime * IncreasePitchSpeed;
+            SFXPlayer.pitch += Time.deltaTime * IncreasePitchSteps;
             yield return null;
         }
     }
 
-    //TODO: De-ASSIGN EVENTS TO EACH SFX SOUND PLAY
     void OnDisable()
     {
         BallInHoleDetection.OnBallEnterHole -= PlayWinSFX;
