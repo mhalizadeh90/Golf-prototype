@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AimLineDraw : MonoBehaviour
+public class AimingDotsManager : MonoBehaviour
 {
     #region Fields
 
@@ -14,7 +14,7 @@ public class AimLineDraw : MonoBehaviour
     bool isAimLineReachedEndOfScreen = false;
     private float gravity;
     GameObject[] AimDotsInstantiated;
-    IEnumerator AimingCoroutine;
+    IEnumerator ShowAimingDotsCoroutine;
 
     #endregion
 
@@ -22,80 +22,66 @@ public class AimLineDraw : MonoBehaviour
     {
         InstantiateAimDotPrefabs();
         gravity = Mathf.Abs(Physics2D.gravity.y);
-        AimingCoroutine = CalculateAimLine();
+        ShowAimingDotsCoroutine = CalculateAimLine();
     }
 
     void OnEnable()
     {
-        AimingInputReciever.OnAimingIsStarted += StartCalculatingAimLine;
-        AimingInputReciever.OnAimingIsFinished += StopCalculatingAimLine;
+        AimingInputReciever.OnAimButtonIsHold += StartAimLine;
+        AimingInputReciever.OnAimButtonIsReleased += StopAimLine;
     }
 
-
-    void StartCalculatingAimLine()
+    void StartAimLine()
     {
-        StartCoroutine(AimingCoroutine);
+        StartCoroutine(ShowAimingDotsCoroutine);
     }
 
-    void StopCalculatingAimLine()
+    void StopAimLine()
     {
-        StopCoroutine(AimingCoroutine);
-        DisableLinesDot();
-    }
-
-    private void DisableLinesDot()
-    {
-        for (int i = 0; i < AimDotsInstantiated.Length; i++)
-        {
-            AimDotsInstantiated[i].SetActive(false);
-        }
+        StopCoroutine(ShowAimingDotsCoroutine);
+        DisableAimingDots();
     }
 
     private IEnumerator CalculateAimLine()
     {
         while (true)
         {
-            CopyPositions(CalculateLineArray());
+            EnableAimingDots(GetAimingDotPositions());
 
             if(isAimLineReachedEndOfScreen)
+            {
                 OnAimReacheEndScreen?.Invoke();
+                break;
+            }
 
             yield return null;
         }
     }
 
-    void CopyPositions(Vector3[] CalculateLineArray)
+    private Vector3[] GetAimingDotPositions()
     {
-        for (int i = 0; i < AimDotsInstantiated.Length; i++)
-        {
-            AimDotsInstantiated[i].transform.position = CalculateLineArray[i];
-            AimDotsInstantiated[i].SetActive(true);
-        }
-    }
+        Vector3[] aimDotsArray = new Vector3[AimDotNumber + 1];
 
-    private Vector3[] CalculateLineArray()
-    {
-        Vector3[] lineArray = new Vector3[AimDotNumber+1];
-
-        var lowestTimeValue = MaxTimeX() / AimDotNumber;
+        var lowestTimeValue = GetMaxTimeX() / AimDotNumber;
         
-        for (int i = 0; i < lineArray.Length; i++)
+        for (int i = 0; i < aimDotsArray.Length; i++)
         {
             var t = lowestTimeValue * i;
-            lineArray[i] = CalculateLinePoint(t);
-            isAimLineReachedEndOfScreen = (lineArray[i].x > xPositionOfEndScreen);
+            aimDotsArray[i] = CalculateDotPosition(t);
+
+            isAimLineReachedEndOfScreen = (aimDotsArray[i].x > xPositionOfEndScreen);
         }
-        return lineArray;
+        return aimDotsArray;
     }
 
-    private Vector3 CalculateLinePoint(float t)
+    private Vector3 CalculateDotPosition(float t)
     {
         float x = AimDirectionRef.value.x *  t;
         float y = (AimDirectionRef.value.y  * t) - (gravity * Mathf.Pow(t, 2) / 2);
         return new Vector3(x + transform.position.x, y + transform.position.y);
     }
 
-    private float MaxTimeY()
+    private float GetMaxTimeY()
     {
         var v = AimDirectionRef.value.y;
         var vv = v * v;
@@ -104,16 +90,17 @@ public class AimLineDraw : MonoBehaviour
         return t;
     }
 
-    private float MaxTimeX()
+    private float GetMaxTimeX()
     {
         var x = AimDirectionRef.value.x;
+
         if (x == 0)
         {
             AimDirectionRef.value.x = 000.1f;
             x = AimDirectionRef.value.x;
         }
-        
-        var t = (CalculateLinePoint(MaxTimeY()).x - transform.position.x) / x;
+
+        var t = (CalculateDotPosition(GetMaxTimeY()).x - transform.position.x) / x;
 
         return t;
     }
@@ -133,7 +120,22 @@ public class AimLineDraw : MonoBehaviour
         }
     }
 
+    void EnableAimingDots(Vector3[] CalculateLineArray)
+    {
+        for (int i = 0; i < AimDotsInstantiated.Length; i++)
+        {
+            AimDotsInstantiated[i].transform.position = CalculateLineArray[i];
+            AimDotsInstantiated[i].SetActive(true);
+        }
+    }
 
+    private void DisableAimingDots()
+    {
+        for (int i = 0; i < AimDotsInstantiated.Length; i++)
+        {
+            AimDotsInstantiated[i].SetActive(false);
+        }
+    }
 
 
 
@@ -144,8 +146,8 @@ public class AimLineDraw : MonoBehaviour
 
     void OnDisable()
     {
-        AimingInputReciever.OnAimingIsStarted -= StartCalculatingAimLine;
-        AimingInputReciever.OnAimingIsFinished -= StopCalculatingAimLine;
+        AimingInputReciever.OnAimButtonIsHold -= StartAimLine;
+        AimingInputReciever.OnAimButtonIsReleased -= StopAimLine;
     }
 
 

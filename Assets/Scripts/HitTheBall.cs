@@ -15,7 +15,7 @@ public class HitTheBall : MonoBehaviour
 
     void OnEnable()
     {
-        AimingInputReciever.OnAimingIsFinished += startHittingTheBall;
+        AimingInputReciever.OnAimButtonIsReleased += startHittingTheBall;
     }
 
     private void startHittingTheBall()
@@ -26,6 +26,6 @@ public class HitTheBall : MonoBehaviour
 
     void OnDisable()
     {
-        AimingInputReciever.OnAimingIsFinished -= startHittingTheBall;
+        AimingInputReciever.OnAimButtonIsReleased -= startHittingTheBall;
     }
 }

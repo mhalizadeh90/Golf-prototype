@@ -20,7 +20,7 @@ public class LandingGroundCheck : MonoBehaviour
 
     void OnEnable()
     {
-        AimingInputReciever.OnAimingIsFinished += StartCheckingLandingGround;
+        AimingInputReciever.OnAimButtonIsReleased += StartCheckingLandingGround;
         BallInHoleDetection.OnBallEnterHole += DisableCheckingGround;
     }
 
@@ -56,7 +56,7 @@ public class LandingGroundCheck : MonoBehaviour
 
     void OnDisable()
     {
-        AimingInputReciever.OnAimingIsFinished -= StartCheckingLandingGround;
+        AimingInputReciever.OnAimButtonIsReleased -= StartCheckingLandingGround;
         BallInHoleDetection.OnBallEnterHole -= DisableCheckingGround;
     }
 

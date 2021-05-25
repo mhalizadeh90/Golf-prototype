@@ -8,8 +8,10 @@ public class AimingInputReciever : MonoBehaviour
     #region Fields
     [Header("Aiming Direction Reference to Write On")]
     [SerializeField] Vector2Variable AimingDirection;
+   
     [Header("Aiming Speed Reference to Read From")]
     [SerializeField] FloatVariable AimingSpeed;
+    
     [Space]
     [SerializeField] Vector2 DefaultAimingDirection;
     [SerializeField][Range(0,1)] float growthStepInXAxis, growthStepInYAxis;
@@ -18,7 +20,7 @@ public class AimingInputReciever : MonoBehaviour
 
     void OnEnable()
     {
-        AimLineDraw.OnAimReacheEndScreen += finishRecievingAimingInput;
+        AimingDotsManager.OnAimReacheEndScreen += finishRecievingAimingInput;
     }
 
     void Update()
@@ -64,21 +66,21 @@ public class AimingInputReciever : MonoBehaviour
     {
         AimingDirection.value = DefaultAimingDirection;
         isAimingStartedForTheFirstTime = true;
-        OnAimingIsStarted?.Invoke();
+        OnAimButtonIsHold?.Invoke();
     }
 
     private void finishRecievingAimingInput()
     {
-        OnAimingIsFinished?.Invoke();
+        OnAimButtonIsReleased?.Invoke();
         this.enabled = false;
     }
 
     void OnDisable()
     {
-        AimLineDraw.OnAimReacheEndScreen -= finishRecievingAimingInput;
+        AimingDotsManager.OnAimReacheEndScreen -= finishRecievingAimingInput;
     }
 
     //-------------Events-----------
-    public static Action OnAimingIsStarted;
-    public static Action OnAimingIsFinished;
+    public static Action OnAimButtonIsHold;
+    public static Action OnAimButtonIsReleased;
 }
